@@ -1,0 +1,34 @@
+
+/****** Prepare default information *****/
+Call AUth0 get users API. Go to terminal. Copy API access token from express server output.
+
+Access token: xxx
+
+user_id: google-oauth2|111366055683076897306
+
+
+
+
+/****** call api *****/
+Website: https://auth0.com/docs/api/management/v2#!/Users/get_users
+
+
+/****** api list users *****/
+To get simplified information of each users, use below.
+fields: email,user_id,last_login,user_metadata
+q: user_id=google-oauth2|111366055683076897306
+
+
+
+
+/****** api create a user *****/
+{"email": "john.smith@gmail.com","connection":"google-oauth2"}
+
+
+/****** api update a user *****/
+{
+  "user_metadata": {
+    "cascade_user_id": 123,
+    "addresses": { "work_address": "city somewhere" }
+  }
+}
