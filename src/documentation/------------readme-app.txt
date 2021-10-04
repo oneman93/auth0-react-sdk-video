@@ -60,3 +60,10 @@ https://stackoverflow.com/questions/59813926/usestate-to-update-multiple-values-
 
 #passing props to route component
 https://stackoverflow.com/questions/27864720/react-router-pass-props-to-handler-component
+
+
+#debugger
+video: https://code.visualstudio.com/docs/introvideos/debugging
+Stop 02:07 to see how to set.
+good doc: https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
+

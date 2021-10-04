@@ -12,9 +12,9 @@ const LoginButton = (props) => {
 
   return (
     <Button
-      onClick={() => {
-        addHistory(['Auth0 loginWithRedirect called...']);
-        loginWithRedirect()
+      onClick={() => {        
+          addHistory(['Auth0 loginWithRedirect called...']);
+          loginWithRedirect();                
       }}
       id="qsLoginBtn"
       variant="primary"
