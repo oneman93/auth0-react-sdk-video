@@ -67,3 +67,8 @@ video: https://code.visualstudio.com/docs/introvideos/debugging
 Stop 02:07 to see how to set.
 good doc: https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
 
+#git commit
+git status
+git add .
+git commit -m 'setState tried in useEffect, but not working'
+
