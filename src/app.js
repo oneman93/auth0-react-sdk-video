@@ -12,10 +12,17 @@ import "./app.css";
 const App = () => {
   const { isAuthenticated, user } = useAuth0()  
 
-  // Kind of constructor.
+  /**
+   * Constructor.
+   *    message: json result from api call
+   *    history: event log
+   *    showLog: boolean flag to on/off log
+   */
   const [allValues, setAllValues] = useState({
     message: '',
-    history: ['App started ...']
+    messageCascade: '',
+    history: ['App started ...'],
+    showLog: false
   });
   
   const { isLoading } = useAuth0();

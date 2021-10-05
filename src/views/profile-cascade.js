@@ -2,22 +2,13 @@ import React, { useState } from "react";
 import { ButtonGroup, Button, Container, Row, Col } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Highlight } from "../components";
+import { justAlert, addHistory, clearHistory, toggleShowLog, setMessage, setMessageCascade } from "../utils";
 
 export const ProfileCascade = (props) => {
   const { user } = useAuth0()
   const serverUrl = process.env.REACT_APP_SERVER_URL;
   const { getAccessTokenSilently } = useAuth0();
-  const setMessage = (message) => {
-    props.setAllValues(preValues => {
-      return {...preValues, ['message']: message}
-    })
-  }
-  const addHistory = (items) => {
-    props.setAllValues(preValues => {
-      return {...preValues, ['history']: preValues.history.concat(items)}
-    })
-  }
-
+  
   const updateMeta = async() => {
     try {
       const token = await getAccessTokenSilently();
@@ -31,9 +22,9 @@ export const ProfileCascade = (props) => {
       );
 
       const responseData = await response.json();
-      setMessage(responseData);
+      setMessageCascade(props, responseData);
     } catch (error) {
-      setMessage(error.message);
+      setMessageCascade(props, error.message);
     }  
   };
 
@@ -42,10 +33,10 @@ export const ProfileCascade = (props) => {
       addHistory(['cascade api called to get users ...'])  
       const response = await fetch(`${serverUrl}/api/cascade_users`);
       const responseData = await response.json();
-      setMessage(responseData);    
+      setMessageCascade(props, responseData);    
       
     } catch (error) {
-      setMessage(error.message);
+      setMessageCascade(props, error.message);
     }  
   };
 
@@ -73,7 +64,7 @@ export const ProfileCascade = (props) => {
       <div className="mt-5">
         <h6 className="muted">Result</h6>
         <Highlight language="json">
-          {JSON.stringify(props.allValues.message, null, 2)}
+          {JSON.stringify(props.allValues.messageCascade, null, 2)}
         </Highlight>
       </div>
       

@@ -15,6 +15,12 @@ export const setMessage = (props, message) => {
   })
 }
 
+export const setMessageCascade = (props, message) => {
+  props.setAllValues(preValues => {
+    return {...preValues, ['messageCascade']: message}
+  })
+}
+
 export const addHistory = (props, items) => {
   props.setAllValues(preValues => {
     return {...preValues, ['history']: preValues.history.concat(items)}
@@ -25,5 +31,11 @@ export const addHistory = (props, items) => {
 export const clearHistory = (props) => {
   props.setAllValues(preValues => {
     return {...preValues, ['history']: ['App started ...']}
+  })
+}
+
+export const toggleShowLog = (props) => {
+  props.setAllValues(preValues => {
+    return {...preValues, ['showLog']: !props.allValues.showLog}
   })
 }
