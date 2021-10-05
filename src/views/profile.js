@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Highlight } from "../components";
 import { Button } from "react-bootstrap";
+import { justAlert, setMessage, addHistory, clearHistory } from "../utils";
 
-export const Profile = () => {
-  const { user } = useAuth0()
+export const Profile = (props) => {
+  const { user, getAccessTokenSilently } = useAuth0();
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+
+  //justAlert();
+
+  /**
+   * API - get all users of Auth0
+   */
+   const getAUser = async() => {     
+    try {
+      const token = await getAccessTokenSilently();    
+      const response = await fetch(`${serverUrl}/api/users/${user.sub}`, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          method: 'GET'
+        }
+      );
+
+      addHistory(props, ['Response is returned.']);
+      const responseData = await response.json();
+      setMessage(props, responseData);
+    } catch (error) {
+      setMessage(props, error.message);
+    }  
+  };
 
   return (
-    <Container className="mb-5">
+    <Container className="mb-5">      
       <Row className="align-items-center profile-header mb-5 text-center text-md-left">
         <Col md={2}>
           <img 
@@ -24,6 +51,12 @@ export const Profile = () => {
       </Row>
       <Row>
         <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
+      </Row>     
+      <Row>
+      <Button color="primary" className="mt-5" onClick={getAUser}>
+        Get A User
+      </Button>
+        <Highlight>{JSON.stringify(props.allValues.message, null, 2)}</Highlight>
       </Row>     
 
       <Row className="farBelow">        

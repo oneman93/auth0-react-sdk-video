@@ -18,7 +18,9 @@ export const ProfileWrapper = (props) => {
       
       <Col>
         <div className="logo"/>
-        {isAuthenticated ? <Profile/> : null}
+        {isAuthenticated 
+        ? <Profile allValues={props.allValues} setAllValues={props.setAllValues} /> 
+        : null}
       </Col>
       
     </Row>    

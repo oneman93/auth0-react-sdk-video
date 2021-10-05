@@ -55,7 +55,7 @@ export const ProfileCascade = (props) => {
         <Button
             onClick={getCascadeUsers}
             id="qsConnectCascadeBtn"
-            variant="primary"
+            variant="secondary"
             className="btn-margin"
           >
             Get Cascade users

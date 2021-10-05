@@ -7,16 +7,33 @@ export const ExternalApi = (props) => {
   const serverUrl = process.env.REACT_APP_SERVER_URL;
   const { getAccessTokenSilently } = useAuth0();
 
+  const setMessage = (message) => {
+    props.setAllValues(preValues => {
+      return {...preValues, ['message']: message}
+    })
+  }
+  const addHistory = (items) => {
+    props.setAllValues(preValues => {
+      return {...preValues, ['history']: preValues.history.concat(items)}
+    })
+  }
+
+  /**
+   * API - public message
+   */
   const callApi = async() => {
     try {
       const response = await fetch(`${serverUrl}/api/messages/public-message`);
       const responseData = await response.json();
-      props.setMessage(responseData.message);
+      setMessage(responseData.message);
     } catch (error) {
-      props.setMessage(error.message);
+      setMessage(error.message);
     }
   };
 
+  /**
+   * API - secure message
+   */
   const callSecureApi = async() => {
     try {
       const token = await getAccessTokenSilently();
@@ -29,16 +46,25 @@ export const ExternalApi = (props) => {
       );
 
       const responseData = await response.json();
-      props.setMessage(responseData.message);
+      setMessage(responseData.message);
     } catch (error) {
-      props.setMessage(error.message);
+      setMessage(error.message);
     }
 
   };
 
+  /**
+   * API - get all users of Auth0
+   */
   const getUsers = async() => {
     try {
       const token = await getAccessTokenSilently();
+      addHistory(['Access Token: ' + token]);
+      addHistory(['Calling express server http://localhost:6060/api/users with the access token ...']);
+      addHistory(['In the server ...']);
+      addHistory(['... /oauth/token will be called to get an API token. See terminal to get this token ...']);
+      addHistory(['... /api/v2/users will be called with the API token ...']);
+
       const response = await fetch(`${serverUrl}/api/users`, 
         {
           headers: {
@@ -48,10 +74,11 @@ export const ExternalApi = (props) => {
         }
       );
 
+      addHistory(['Response is returned.']);
       const responseData = await response.json();
-      props.setMessage(responseData);
+      setMessage(responseData);
     } catch (error) {
-      props.setMessage(error.message);
+      setMessage(error.message);
     }  
   };
 
@@ -82,11 +109,11 @@ export const ExternalApi = (props) => {
         </Button>
       </ButtonGroup>
 
-      {props.message && (
+      {props.allValues.message && (
         <div className="mt-5">
           <h6 className="muted">Result</h6>
           <Highlight language="json">
-            {JSON.stringify(props.message, null, 2)}
+            {JSON.stringify(props.allValues.message, null, 2)}
           </Highlight>
         </div>
       )}
