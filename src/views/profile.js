@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Highlight } from "../components";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import { justAlert, setMessage, addHistory, clearHistory } from "../utils";
 
 export const Profile = (props) => {
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   //justAlert();
+
+  const getJWT = async() => {     
+    try {
+      const token = await getAccessTokenSilently();    
+      setMessage(props, token);
+    } catch (error) {
+      setMessage(props, error.message);
+    }  
+  };
+
 
   /**
    * API - get all users of Auth0
@@ -35,7 +45,7 @@ export const Profile = (props) => {
   };
 
   return (
-    <Container className="mb-5">      
+    <Container className="mb-5">                
       <Row className="align-items-center profile-header mb-5 text-center text-md-left">
         <Col md={2}>
           <img 
@@ -53,10 +63,17 @@ export const Profile = (props) => {
         <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
       </Row>     
       <Row>
-      <Button color="primary" className="mt-5" onClick={getAUser}>
-        Get A User
-      </Button>
-        <Highlight>{JSON.stringify(props.allValues.message, null, 2)}</Highlight>
+        <ButtonGroup>
+          <Button color="primary" className="mt-5" onClick={getJWT}>
+            Get Auth0 JWT
+          </Button>
+          <Button color="primary" className="mt-5" onClick={getAUser}>
+            Get A User
+          </Button>
+          
+        </ButtonGroup>
+        
+        <Highlight>{JSON.stringify(props.allValues.message, null, 2)}</Highlight>        
       </Row>     
 
       <Row className="farBelow">        

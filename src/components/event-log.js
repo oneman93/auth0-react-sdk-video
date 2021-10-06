@@ -4,7 +4,7 @@ import React from "react";
 import logo from "../assets/jnj150.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ButtonGroup } from "react-bootstrap";
-import { AccessAlarm, Visibility, Delete } from '@material-ui/icons';
+import { AccessAlarm, Visibility, Delete, Event } from '@material-ui/icons';
 import { justAlert, addHistory, clearHistory, toggleShowLog } from "../utils";
 
 const EventLog = (props) => {
@@ -30,7 +30,7 @@ const EventLog = (props) => {
   })
 
   if (!showLog) {
-    return (<Visibility onClick={() => {
+    return (<Event onClick={() => {
       toggleShowLog(props);
     }}/>);
   }
@@ -40,7 +40,7 @@ const EventLog = (props) => {
       <Delete onClick={() => {
             toggleShowLog(props);
             }}/>
-            
+
       <ButtonGroup>
       <Button
         onClick={() => {        

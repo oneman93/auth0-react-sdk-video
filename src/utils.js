@@ -9,15 +9,15 @@ export const justAlert = () => {
   alert('hello');
 };
 
-export const setMessage = (props, message) => {
+export const setMessage = (props, message1) => {
   props.setAllValues(preValues => {
-    return {...preValues, ['message']: message}
+    return {...preValues, ['message']: message1}
   })
 }
 
-export const setMessageCascade = (props, message) => {
+export const setMessageCascade = (props, message2) => {
   props.setAllValues(preValues => {
-    return {...preValues, ['messageCascade']: message}
+    return {...preValues, ['messageCascade']: message2}
   })
 }
 

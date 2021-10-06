@@ -10,28 +10,50 @@ export const ProfileCascade = (props) => {
   const { getAccessTokenSilently } = useAuth0();
   
   const updateMeta = async() => {
-    try {
-      const token = await getAccessTokenSilently();
-      const response = await fetch(`${serverUrl}/api/users`, 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          method: 'POST'
-        }
-      );
+  };
 
+  const getCascadeUsers = async() => {
+    try {
+      addHistory(props, ['cascade api called to get users ...'])  
+      const token = await getAccessTokenSilently();    
+
+      const response = await fetch(`${serverUrl}/api/cascade_users`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+      }
+      );
       const responseData = await response.json();
-      setMessageCascade(props, responseData);
+      setMessageCascade(props, responseData);    
+      
     } catch (error) {
       setMessageCascade(props, error.message);
     }  
   };
 
-  const getCascadeUsers = async() => {
+  const getInvitedUsers = async() => {
+  };
+
+  const checkInvitation = async() => {
     try {
-      addHistory(['cascade api called to get users ...'])  
-      const response = await fetch(`${serverUrl}/api/cascade_users`);
+      const token = await getAccessTokenSilently();    
+      const data = {
+        email: user.email,
+        jwt: token
+      };
+
+      const response = await fetch(`${serverUrl}/api/invitations/check/`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          method: 'POST',
+          body: JSON.stringify(data)
+        }
+      );
       const responseData = await response.json();
       setMessageCascade(props, responseData);    
       
@@ -51,14 +73,30 @@ export const ProfileCascade = (props) => {
           >
             Get Cascade users
         </Button>
+        {/* <Button
+            onClick={getInvitedUsers}
+            id="qsInvitedUsersBtn"
+            variant="secondary"
+            className="btn-margin"
+          >
+            Get Invited Users
+        </Button> */}
         <Button
+            onClick={checkInvitation}
+            id="qsCheckUserInvitationBtn"
+            variant="primary"
+            className="btn-margin"
+          >
+            Check User Invitation by Auth0 JWT (+email)
+        </Button>
+        {/* <Button
             onClick={updateMeta}
             id="qsUpdateProfileBtn"
             variant="primary"
             className="btn-margin"
           >
             Update auth0 user meta
-        </Button>
+        </Button> */}
       </ButtonGroup>
       
       <div className="mt-5">

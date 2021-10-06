@@ -14,7 +14,8 @@ const App = () => {
 
   /**
    * Constructor.
-   *    message: json result from api call
+   *    message: json result from Auth0 api call
+   *    messageCascade: json result from Cascade api call
    *    history: event log
    *    showLog: boolean flag to on/off log
    */
