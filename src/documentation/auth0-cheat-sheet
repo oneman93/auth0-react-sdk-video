@@ -32,3 +32,68 @@ q: user_id=google-oauth2|111366055683076897306
     "addresses": { "work_address": "city somewhere" }
   }
 }
+
+/****** api Link a User Account *****/
+id: google-oauth2|101798354348959699491
+body:
+{
+  "provider": "google-oauth2",
+  "user_id": "google-oauth2|111366055683076897306"
+}
+
+// main user 
+matthew.oh@cascade.app
+google-oauth2|101798354348959699491
+"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1EUTRPREZFUXpFeFJEaEJRVVpFTWpBMk1EZEVSakEzUVVNNFJEWXpNREJFUVVNME1FWkdPUSJ9.eyJpc3MiOiJodHRwczovL21hdHRoZXdvaDkzLmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMTc5ODM1NDM0ODk1OTY5OTQ5MSIsImF1ZCI6WyJodHRwczovL21hdHRoZXdvaDkzLmF1LmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9tYXR0aGV3b2g5My5hdS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjMzNTcwNjMxLCJleHAiOjE2MzM2NTcwMzEsImF6cCI6IlRGY0x6SDREYkJYYnkzYVdKbzVEdEw3M29nSm9KTDFHIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.BMv945R0ULBFJ9E21YXJg78fXbZDSU9Pv67eOADUfPVsBbBNVu7116ddC9vkJrHknpHrsz1aNY_ZzKyWNUkCwu4swF4N87NWsSKRVHtawoa4sMk3YmojEjoHdmi-v3QkzaWLh3gbzpaPKAWuc7qeVOpLQhAJhK0jhICqVQMTeJyFNtpQU1vINA7Xmoa9_LkpKpaxPCTZ9iEeeDWrtiFhzaOrbkl1OF9X39VDqIKrdr9ME24whmBFBHnGPHXvBBoC3Pr2CVKZMbZwngYT0SMwHjqmgS1sFhRJaPzquGSDZP5y-JB6aOW74l3KNNW8-vkL77MtYCg8FzJNr1n4zCPeGg"
+
+// secondary user
+matthewoh93@gmail.com
+google-oauth2|111366055683076897306
+"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1EUTRPREZFUXpFeFJEaEJRVVpFTWpBMk1EZEVSakEzUVVNNFJEWXpNREJFUVVNME1FWkdPUSJ9.eyJpc3MiOiJodHRwczovL21hdHRoZXdvaDkzLmF1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExMTM2NjA1NTY4MzA3Njg5NzMwNiIsImF1ZCI6WyJodHRwczovL21hdHRoZXdvaDkzLmF1LmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9tYXR0aGV3b2g5My5hdS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjMzNTcwNzAzLCJleHAiOjE2MzM2NTcxMDMsImF6cCI6IlRGY0x6SDREYkJYYnkzYVdKbzVEdEw3M29nSm9KTDFHIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.KtOC_qXfu8h-zEHuearCFgKecFM8MI7E8CnNxkUjtqh0QtOsmzmDPpYLq8sPVv-eqV6FEMW-t9qQqfMEDmg46Y3UvKCNDKU4HkPzYgzY1J3IhoqvnQDY8CeCgGCCMk5cYebCkGxaOMxIQs3sSJrvmGh_SInOs_yCOqZ6vQWiLZionBeRoNpoUrQJpiXE5tK5iu4I2oB9_Ftb-APHaviNaQgTmrXJ8AwQSBiTHBMzMZawheWVf9x-hNqjuXzjs_eWCek0P_YLXgtyZPx4IPEh04UoxA0_WyqABxSkJfzYyzG4JGxh_ZS4Tl2u14uzZqVUJNcMlKHAMMZEpQ4SYqN1iA"
+
+// request url
+https://matthewoh93.au.auth0.com/api/v2/users/google-oauth2%7C101798354348959699491/identities
+
+// respojnse body
+[
+  {
+    "profileData": {
+      "email": "matthew.oh@cascade.app",
+      "email_verified": true,
+      "name": "Matthew Oh",
+      "given_name": "Matthew",
+      "family_name": "Oh",
+      "picture": "https://lh3.googleusercontent.com/a-/AOh14GidwcjoTitv6a_zAdXZLnHo7YBSb1IhQMZ8pn5J=s96-c",
+      "locale": "en"
+    },
+    "provider": "google-oauth2",
+    "access_token": "ya29.a0ARrdaM-UdUbWWdT6_WLa7xXE_XySc6r25VIhw2z0c1qIYAzZNoDm9IEZ2-6RE14NnvuwrRu7zYSJeh7ablUugQeirh6tiPgH-v9tS6v9DZ5Srtywj5SiwWJeFGVn72Q_enKhaudNjl765d-W0XgJ_n0RXeCqaQ",
+    "expires_in": 3599,
+    "user_id": "101798354348959699491",
+    "connection": "google-oauth2",
+    "isSocial": true
+  },
+  {
+    "profileData": {
+      "email": "matthewoh93@gmail.com",
+      "email_verified": true,
+      "name": "Matthew Oh",
+      "given_name": "Matthew",
+      "family_name": "Oh",
+      "picture": "https://lh3.googleusercontent.com/a-/AOh14GjVyZRasmI4eOJ7xNzm46u-ECmvrC8-pP9WjYC9=s96-c",
+      "locale": "en"
+    },
+    "provider": "google-oauth2",
+    "access_token": "ya29.a0ARrdaM9_TvJcxQoq6gGcjv4qMhvxmgflcoqMN11XeTP5sStkwvh3rSyvmyqO4cbXlenj_lHeSXWc6Az-lvkePLxdFP56zcCR8ZcafmsDMfpj2QU9_NGtqugqSv_RVKW2gn18SVxOJ3nZOPEKhC8grszz4nvaRw",
+    "expires_in": 3599,
+    "user_id": "111366055683076897306",
+    "connection": "google-oauth2",
+    "isSocial": true
+  }
+]
+
+
+/****** api Unlink a User Identity *****/
+id: google-oauth2|101798354348959699491
+"provider": "google-oauth2",
+"user_id": "111366055683076897306"  // note that only the 2nd number part

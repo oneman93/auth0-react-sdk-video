@@ -37,7 +37,7 @@ const EventLog = (props) => {
 
   return (
     <div className="event-log">
-      <Delete onClick={() => {
+      <Delete className="delete-icon" onClick={() => {
             toggleShowLog(props);
             }}/>
 

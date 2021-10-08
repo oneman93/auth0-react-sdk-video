@@ -88,3 +88,9 @@ Custom
 /* .event-log pre {
   margin: 0;
 } */
+
+.delete-icon {
+  position: absolute;
+  left: 2px;
+  top: 90px;
+}
