@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Highlight, LinkAccount } from "../components";
+import { Highlight, LinkedAccountList } from "../components";
 import { Button, ButtonGroup } from "react-bootstrap";
-import { justAlert, setMessage, addHistory, clearHistory } from "../utils";
+import { justAnAlert, setMessage, addHistory, clearHistory, setProfile } from "../utils";
 
 export const Profile = (props) => {
   const { user, getAccessTokenSilently, getAccessTokenWithPopup, loginWithPopup } = useAuth0();
   const serverUrl = process.env.REACT_APP_SERVER_URL;
+
+  // justAnAlert();
 
   const getJWT = async() => {     
     try {
@@ -36,12 +38,19 @@ export const Profile = (props) => {
       addHistory(props, ['Response is returned.']);
       const profile = await response.json();
       setMessage(props, profile);
+      setProfile(props, profile);
 
     } catch (error) {
       setMessage(props, error.message);
     }  
   };
 
+  // Constructor  
+  useEffect(() => {
+    console.log(
+      "This only happens ONCE.  But it happens AFTER the initial render."
+    );
+  }, []);
 
   return (
     <Container className="mb-5">                
@@ -67,15 +76,14 @@ export const Profile = (props) => {
             Get Auth0 JWT
           </Button>
           <Button color="primary" className="mt-5" onClick={getAUser}>
-            Get A User (Profile)
+            Get Profile
           </Button>
-          
         </ButtonGroup>
         
         <Highlight>{JSON.stringify(props.allValues.message, null, 2)}</Highlight>        
       </Row>     
       <Row>
-        { props.allValues.message ? <LinkAccount {...props} profile={props.allValues.message} /> : null}        
+        { props.allValues.message ? <LinkedAccountList {...props} /> : null}        
       </Row>
     </Container>
   );

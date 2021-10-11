@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ButtonGroup, Button, Container, Row, Col } from "react-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Highlight } from "../components";
-import { justAlert, addHistory, clearHistory, toggleShowLog, setMessage, setMessageCascade } from "../utils";
+import { justAnAlert, addHistory, clearHistory, toggleShowLog, setMessage, setMessageCascade } from "../utils";
 
 export const ProfileCascade = (props) => {
   const { user } = useAuth0()

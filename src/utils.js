@@ -5,13 +5,19 @@ export const doSomethingWithInput = (theInput) => {
   return theInput;
 };
 
-export const justAlert = () => {
+export const justAnAlert = () => {
   alert('hello');
 };
 
 export const setMessage = (props, message1) => {
   props.setAllValues(preValues => {
     return {...preValues, ['message']: message1}
+  })
+}
+
+export const setProfile = (props, profile) => {
+  props.setAllValues(preValues => {
+    return {...preValues, ['profile']: profile}
   })
 }
 

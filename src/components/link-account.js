@@ -1,9 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Auth0Client } from "@auth0/auth0-spa-js";
 import { Button } from "react-bootstrap";
-import { justAlert, setMessage, addHistory, clearHistory } from "../utils";
+import { justAnAlert, setMessage, addHistory, clearHistory, setProfile } from "../utils";
 import React, { useEffect, useState } from "react";
-import { RefreshLinkedAccounts } from "../components";
 
 /**
  * This project copied from https://github.com/auth0-samples/auth0-link-accounts-sample/tree/master/SPA
@@ -17,17 +16,7 @@ const LinkAccount = (props) => {
     domain: process.env.REACT_APP_AUTH0_DOMAIN,
     clientId: process.env.REACT_APP_AUTH0_CLIENT_ID
   }
-
   const { isAuthenticated, user, getAccessTokenSilently, getAccessTokenWithPopup, loginWithPopup } = useAuth0();
-
-  const profile = props.profile;
-
-  // Constructor >> not much help >> i couldn't use async here
-  useEffect(() => {
-    console.log(
-      "This only happens ONCE.  But it happens AFTER the initial render."
-    );    
-  }, []);
 
   // Note that you have scope to update identities
   const auth0 = new Auth0Client({
@@ -45,7 +34,12 @@ const LinkAccount = (props) => {
     try {
       await linkAccount();
       // refresh();
-    } catch ({ message }) {
+      const updatedProfile = await getUserProfile(user.sub);
+      setMessage(props, updatedProfile);
+      setProfile(props, updatedProfile);
+
+    } catch (error) {
+      const { message } = error;
       setMessage(props, message);
     }
   }
@@ -93,8 +87,9 @@ const LinkAccount = (props) => {
         link_with: targetUserIdToken,
       }),
     });
-  }
 
+
+  }
 
 
   const getUserProfile = async (userId) => {
@@ -115,21 +110,17 @@ const LinkAccount = (props) => {
    */
   return (
     <div id="linked-accounts">
-      <p><strong>Linked accounts:</strong></p>
-      <RefreshLinkedAccounts {...props} />
       
       <Button
         onClick={() => {                      
           linkAccountWrapper();                
         }}
-        id="qsLoginAgainBtn"
+        id="qsLinkAccountBtn"
         variant="primary"
         className="btn-margin"
       >
-        Link Accounts
+        Link Account
       </Button>
-    
-      <div className="linking-message"></div>
     </div>
     
   );

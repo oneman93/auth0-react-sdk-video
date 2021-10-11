@@ -5,7 +5,7 @@ import logo from "../assets/jnj150.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { AccessAlarm, Visibility, Delete, Event } from '@material-ui/icons';
-import { justAlert, addHistory, clearHistory, toggleShowLog } from "../utils";
+import { justAnAlert, addHistory, clearHistory, toggleShowLog } from "../utils";
 
 const EventLog = (props) => {
   const { isAuthenticated, user } = useAuth0()

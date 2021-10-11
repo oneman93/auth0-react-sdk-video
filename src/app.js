@@ -23,7 +23,8 @@ const App = () => {
     message: '',
     messageCascade: '',
     history: ['App started ...'],
-    showLog: false
+    showLog: false,
+    profile: ''
   });
   
   const { isLoading } = useAuth0();

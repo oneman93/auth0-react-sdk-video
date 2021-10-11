@@ -6,6 +6,6 @@ import Loading from "./loading";
 import NavBar from "./nav-bar";
 import Highlight from "./highlight";
 import LinkAccount from "./link-account";
-import RefreshLinkedAccounts from "./refresh-linked-accounts";
+import LinkedAccountList from "./linked-account-list";
 
-export { Content, Footer, Hero, EventLog, Loading, NavBar, Highlight, LinkAccount, RefreshLinkedAccounts };
+export { Content, Footer, Hero, EventLog, Loading, NavBar, Highlight, LinkAccount, LinkedAccountList };
