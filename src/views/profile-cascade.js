@@ -9,7 +9,36 @@ export const ProfileCascade = (props) => {
   const serverUrl = process.env.REACT_APP_SERVER_URL;
   const { getAccessTokenSilently } = useAuth0();
   
-  const updateMeta = async() => {
+  const updateMetaData = async() => {
+    const data = {
+      user_metadata: {
+        cascade_user_id: 123,
+        addresses: {
+          work_address: "Level 4/59 Goulburn St, Sydney NSW 2000",
+          home_address: "7/10 Barber ave, Eastlakes, NSW 2018"
+        }
+      },
+      sub: user.sub
+    };
+
+    try {
+      const token = await getAccessTokenSilently();    
+      const response = await fetch(`${serverUrl}/api/users`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        method: 'PATCH',
+        body: JSON.stringify(data)
+      }
+      );
+      const responseData = await response.json();
+      setMessageCascade(props, responseData);    
+      
+    } catch (error) {
+      setMessageCascade(props, error.message);
+    }
   };
 
   const getCascadeUsers = async() => {
@@ -31,9 +60,6 @@ export const ProfileCascade = (props) => {
     } catch (error) {
       setMessageCascade(props, error.message);
     }  
-  };
-
-  const getInvitedUsers = async() => {
   };
 
   const checkInvitation = async() => {
@@ -73,14 +99,6 @@ export const ProfileCascade = (props) => {
           >
             Get Cascade users
         </Button>
-        {/* <Button
-            onClick={getInvitedUsers}
-            id="qsInvitedUsersBtn"
-            variant="secondary"
-            className="btn-margin"
-          >
-            Get Invited Users
-        </Button> */}
         <Button
             onClick={checkInvitation}
             id="qsCheckUserInvitationBtn"
@@ -89,14 +107,14 @@ export const ProfileCascade = (props) => {
           >
             Check User Invitation by Auth0 JWT (+email)
         </Button>
-        {/* <Button
-            onClick={updateMeta}
-            id="qsUpdateProfileBtn"
+        <Button
+            onClick={updateMetaData}
+            id="qsupdateMetaDataBtn"
             variant="primary"
             className="btn-margin"
           >
             Update auth0 user meta
-        </Button> */}
+        </Button>
       </ButtonGroup>
       
       <div className="mt-5">
