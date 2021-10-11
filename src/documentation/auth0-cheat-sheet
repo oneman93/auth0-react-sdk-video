@@ -67,7 +67,7 @@ https://matthewoh93.au.auth0.com/api/v2/users/google-oauth2%7C101798354348959699
       "locale": "en"
     },
     "provider": "google-oauth2",
-    "access_token": "ya29.a0ARrdaM-UdUbWWdT6_WLa7xXE_XySc6r25VIhw2z0c1qIYAzZNoDm9IEZ2-6RE14NnvuwrRu7zYSJeh7ablUugQeirh6tiPgH-v9tS6v9DZ5Srtywj5SiwWJeFGVn72Q_enKhaudNjl765d-W0XgJ_n0RXeCqaQ",
+    "access_token": "ya29.xxx",
     "expires_in": 3599,
     "user_id": "101798354348959699491",
     "connection": "google-oauth2",
@@ -84,7 +84,7 @@ https://matthewoh93.au.auth0.com/api/v2/users/google-oauth2%7C101798354348959699
       "locale": "en"
     },
     "provider": "google-oauth2",
-    "access_token": "ya29.a0ARrdaM9_TvJcxQoq6gGcjv4qMhvxmgflcoqMN11XeTP5sStkwvh3rSyvmyqO4cbXlenj_lHeSXWc6Az-lvkePLxdFP56zcCR8ZcafmsDMfpj2QU9_NGtqugqSv_RVKW2gn18SVxOJ3nZOPEKhC8grszz4nvaRw",
+    "access_token": "ya29.yyy",
     "expires_in": 3599,
     "user_id": "111366055683076897306",
     "connection": "google-oauth2",
