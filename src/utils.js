@@ -5,8 +5,12 @@ export const doSomethingWithInput = (theInput) => {
   return theInput;
 };
 
-export const justAnAlert = () => {
-  alert('hello');
+export const justAnAlert = (message) => {
+  if (message) {
+    alert(message);
+  } else {
+    alert('hello');
+  }  
 };
 
 export const setMessage = (props, message1) => {

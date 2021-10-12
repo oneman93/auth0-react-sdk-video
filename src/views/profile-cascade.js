@@ -21,6 +21,11 @@ export const ProfileCascade = (props) => {
       sub: user.sub
     };
 
+    // const data = {
+    //   user_metadata: {},
+    //   sub: user.sub
+    // };
+
     try {
       const token = await getAccessTokenSilently();    
       const response = await fetch(`${serverUrl}/api/users`,

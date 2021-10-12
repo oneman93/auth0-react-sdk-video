@@ -26,7 +26,7 @@ const EventLog = (props) => {
   }
 
   const historyDiv = props.allValues.history.map((item, index) => {
-    return (<li key={index}>{item}</li>)
+    return (<li key={index}>{index+1}: {item}</li>)
   })
 
   if (!showLog) {
@@ -54,7 +54,7 @@ const EventLog = (props) => {
       </Button>    
       <Button
         onClick={() => {        
-            clearHistory();           
+            clearHistory(props);           
         }}
         id="qsClearHistoryBtn"
         variant="warning"

@@ -62,7 +62,8 @@ export const ExternalApi = (props) => {
       addHistory(['Access Token: ' + token]);
       addHistory(['Calling express server http://localhost:6060/api/users with the access token ...']);
       addHistory(['In the server ...']);
-      addHistory(['... /oauth/token will be called to get an API token. See terminal to get this token ...']);
+      addHistory(['... /api/users checkJWT checks the access token. User is allowed to call api.']);
+      addHistory(['... /oauth/token had been called already to get an API token. See terminal to get this token.']);
       addHistory(['... /api/v2/users will be called with the API token ...']);
 
       const response = await fetch(`${serverUrl}/api/users`, 
