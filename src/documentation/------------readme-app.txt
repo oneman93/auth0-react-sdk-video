@@ -88,3 +88,5 @@ https://undefined/authorize?onRedreictCallback=appState%20%3D%3E%20%7B%0A%20%20%
 Resolution: delete .env and create again !!!
 
 
+history.push does not refresh the page
+https://stackoverflow.com/questions/42941708/react-history-push-is-updating-url-but-not-navigating-to-it-in-browser

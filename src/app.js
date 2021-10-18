@@ -7,7 +7,7 @@ import { Home, Profile, ExternalApi } from "./views";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import "./app.css";
-
+import MyRedirect from "./views/my-redirect";
 
 const App = () => {
   const { isAuthenticated, user } = useAuth0()  
@@ -42,6 +42,7 @@ const App = () => {
           <Route path="/" exact component={() => (<Home allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/profile" component={() => (<Profile allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/external-api" component={() => (<ExternalApi allValues={allValues} setAllValues={setAllValues} />)} />
+          <Route path="/my-redirect" component={() => (<MyRedirect allValues={allValues} setAllValues={setAllValues} />)} />
         </Switch>
       </Container>
       {/* <Footer /> */}

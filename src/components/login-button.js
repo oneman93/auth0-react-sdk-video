@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const LoginButton = (props) => {
   const { loginWithRedirect } = useAuth0();
@@ -11,17 +11,40 @@ const LoginButton = (props) => {
   }
 
   return (
-    <Button
-      onClick={() => {        
-          addHistory(['Auth0 loginWithRedirect called...']);
-          loginWithRedirect();                
-      }}
-      id="qsLoginBtn"
-      variant="primary"
-      className="btn-margin"
-    >
-      Login
-    </Button>
+    <ButtonGroup>
+      <Button
+        onClick={() => {        
+            loginWithRedirect({
+              screen_hint: 'signup',
+              appState: {
+                returnTo: '/my-redirect'
+              }
+            });                
+        }}
+        id="qsLoginBtn"
+        variant="primary"
+        className="btn-margin"
+      >
+        Try For Free
+      </Button>
+
+      <Button
+        onClick={() => {        
+            addHistory(['Auth0 loginWithRedirect called...']);
+            loginWithRedirect(
+              {
+                organization: 'org_ASk47QV0qNjstfjW'
+              }
+            );                
+        }}
+        id="qsLoginBtn"
+        variant="primary"
+        className="btn-margin"
+      >
+        Login
+      </Button>
+    </ButtonGroup>
+    
   );
 };
 

@@ -10,6 +10,7 @@ const Auth0PRoviderWithHistory = ({ children }) => {
 
   const onRedreictCallback = (appState) => {
     history.push(appState?.returnTo || window.location.pathname);
+    //window.location.href = "https://www.hotmail.com";
   };
 
   return (

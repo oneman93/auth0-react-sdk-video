@@ -39,6 +39,15 @@ const MainNav = () => {
       >
         External API
       </Nav.Link>
+
+      <Nav.Link
+        as={RouterNavLink}
+        to="/my-redirect"
+        exact
+        activeClassName="router-link-exact-active"
+      >
+        My Redirect
+      </Nav.Link>
     </Nav>
   );
 };
