@@ -72,3 +72,19 @@ git status
 git add .
 git commit -m 'setState tried in useEffect, but not working'
 git push
+
+//signup
+https://matthewoh93.au.auth0.com/u/login?state=hKFo2SBGTGs5VmVvdzhILXR0Y05aS2NGNGdIYWFSZEpmZGVaeKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGhYMi1OTC0wWE14djhtMXlMcGZoa2hTZmZEYW1JSlZ3o2NpZNkgVEZjTHpINERiQlhieTNhV0pvNUR0TDczb2dKb0pMMUc
+
+// sign in
+https://matthewoh93.au.auth0.com/u/login?state=hqFo2SB0b1VOdXRrRm5GYjl4Sm1teHFWcWpaSVItenRPTjljMaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIE11cTJDbFFxa2p5dVZDZWRlR2NVUDJ6TDNleHRVQTNxo2NpZNkgVEZjTHpINERiQlhieTNhV0pvNUR0TDczb2dKb0pMMUelb3JnaWS0b3JnX0FTazQ3UVYwcU5qc3Rmalenb3JnbmFtZaNqbmo
+
+How to redirect to a different page based on signup vs login screen?
+https://community.auth0.com/t/how-to-redirect-to-a-different-page-based-on-signup-vs-login-screen/60258
+
+
+At one stage, loginWithRedirect() returned below url:
+https://undefined/authorize?onRedreictCallback=appState%20%3D%3E%20%7B%0A%20%20%20%20history.push((appState%20%3D%3D%3D%20null%20%7C%7C%20appState%20%3D%3D%3D%20void%200%20%3F%20void%200%20%3A%20appState.returnTo)%20%7C%7C%20window.location.pathname)%3B%0A%20%20%7D&redirect_uri=http%3A%2F%2Flocalhost%3A3000&organization=org_ASk47QV0qNjstfjW&scope=openid%20profile%20email&response_type=code&response_mode=query&state=NVd3V2ZqSlQ4eVBQOHlHak5DNWk5aDdLTkExbVFUcVhRbX5YOElrM2ZCWQ%3D%3D&nonce=cFdVUWxpdjhSU0t5SElxcmtia0dyT195RXlQVHg3ejBnazc4Sy1VTWhqNQ%3D%3D&code_challenge=n_wdM9tQPR5syTc1wdxAdgi2kZGZreaqv2CwLliYuBg&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtcmVhY3QiLCJ2ZXJzaW9uIjoiMS44LjAifQ%3D%3D
+Resolution: delete .env and create again !!!
+
+
