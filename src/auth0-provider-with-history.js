@@ -8,9 +8,8 @@ const Auth0PRoviderWithHistory = ({ children }) => {
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
-  const onRedreictCallback = (appState) => {
+  const onRedirectCallback = (appState) => {
     history.push(appState?.returnTo || window.location.pathname);
-    //window.location.href = "https://www.hotmail.com";
   };
 
   return (
@@ -18,7 +17,7 @@ const Auth0PRoviderWithHistory = ({ children }) => {
     domain={domain}
     clientId={clientId}
     redirectUri={window.location.origin}
-    onRedreictCallback={onRedreictCallback}
+    onRedirectCallback={onRedirectCallback}
     audience={audience}
     >
       {children}

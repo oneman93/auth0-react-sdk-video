@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, ButtonGroup } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const LoginButton = (props) => {
   const { loginWithRedirect } = useAuth0();
@@ -9,17 +10,20 @@ const LoginButton = (props) => {
       return {...preValues, ['history']: preValues.history.concat(items)}
     })
   }
+  const history = useHistory();
 
   return (
     <ButtonGroup>
       <Button
         onClick={() => {        
-            loginWithRedirect({
-              screen_hint: 'signup',
-              appState: {
-                returnTo: '/my-redirect'
+            loginWithRedirect(
+              {
+                screen_hint: 'signup',
+                appState: {
+                  returnTo: '/my-redirect?url=http://demo.cascade.localhost'
+                }
               }
-            });                
+            );                
         }}
         id="qsLoginBtn"
         variant="primary"
@@ -43,6 +47,9 @@ const LoginButton = (props) => {
       >
         Login
       </Button>
+
+      <button onClick={() => history.push('/')}>Go to home</button>
+
     </ButtonGroup>
     
   );
