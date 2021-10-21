@@ -90,3 +90,8 @@ Resolution: delete .env and create again !!!
 
 history.push does not refresh the page
 https://stackoverflow.com/questions/42941708/react-history-push-is-updating-url-but-not-navigating-to-it-in-browser
+
+
+React BrowseRouter, good one!
+https://www.freecodecamp.org/news/a-complete-beginners-guide-to-react-router-include-router-hooks/
+

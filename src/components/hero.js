@@ -10,7 +10,10 @@ const Hero = () => {
   return (
     <div className="text-center hero my-5">
       <img className="mb-3 app-logo" src={logo} alt="React logo" width="120" />
-      <h1 className="mb-4">Welcome to Johnson & Johnson</h1>
+      <h1 className="mb-4">{ isAuthenticated ? <span>Hi, {user.nickname}</span>
+            : <span>You are not authenticated yet</span>
+          }
+      </h1>
 
       <div className="lead">
         Use case2: 
