@@ -34,7 +34,7 @@ store.dispatch({
   type: "SET_USER",
   user: {
     avatar: "https://dolsoft.com.au/Image/stone.png",
-    name: "Matthew",
+    name: "Matthew2",
     followers: 1234,
     following: 123,
     avatarSize: 50

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
@@ -8,9 +8,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import "./app.css";
 import MyRedirect from "./views/my-redirect";
+import Hello from "./components/hello";
+import Square from "./components/square";
 
 const App = () => {
-  const { isAuthenticated, user } = useAuth0()  
+  const { isAuthenticated, user } = useAuth0()
 
   /**
    * Constructor.
@@ -28,14 +30,33 @@ const App = () => {
     showLog: false,
     profile: ''
   });
-  
+
+
+  const [count, setCount] = useState(0);
+  const favoriteNums = [7, 21, 37];
+
+  const increment = useCallback(
+    n => {
+      setCount(c => c + n);
+    },
+    [setCount]
+  );
+
   const { isLoading } = useAuth0();
   if (isLoading) {
-    return <Loading/>
+    return <Loading />
   }
 
   return (
     <div id="app" className="d-flex flex-column h-100">
+      <div className="myButtonWrapper"><Hello increment={increment} /></div>
+      <div>count: {count}</div>
+      <div className="myButtonWrapper">
+        {favoriteNums.map(n => {
+          return <Square increment={increment} n={n} key={n} />;
+        })}
+      </div>      
+
       <NavBar allValues={allValues} setAllValues={setAllValues} />
       <EventLog allValues={allValues} setAllValues={setAllValues} />
 

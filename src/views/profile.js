@@ -74,9 +74,9 @@ export const Profile = (props) => {
 
   // Constructor  
   useEffect(() => {
-    console.log(
-      "This only happens ONCE.  But it happens AFTER the initial render."
-    );
+    // console.log(
+    //   "This only happens ONCE.  But it happens AFTER the initial render."
+    // );
   }, []);
 
   return (

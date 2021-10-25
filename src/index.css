@@ -103,3 +103,7 @@ img.user-avatar {
 img.user-avatar.w50 {
   width: 50px;  
 }
+
+.myButtonWrapper button {
+  width: auto;
+}

@@ -95,3 +95,9 @@ https://stackoverflow.com/questions/42941708/react-history-push-is-updating-url-
 React BrowseRouter, good one!
 https://www.freecodecamp.org/news/a-complete-beginners-guide-to-react-router-include-router-hooks/
 
+Redux, useContext
+https://daveceddia.com/context-api-vs-redux/
+
+useCallback
+https://www.youtube.com/watch?v=-Ls48dd-vJE
+
