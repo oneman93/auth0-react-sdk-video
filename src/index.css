@@ -94,3 +94,12 @@ Custom
   left: 2px;
   top: 90px;
 }
+
+img.user-avatar {
+  width: 100px;
+  margin-right: 10px;
+}
+
+img.user-avatar.w50 {
+  width: 50px;  
+}

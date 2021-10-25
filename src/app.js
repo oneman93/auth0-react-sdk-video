@@ -14,6 +14,8 @@ const App = () => {
 
   /**
    * Constructor.
+   * App initializes the state to contain below objects:
+   * 
    *    message: json result from Auth0 api call
    *    messageCascade: json result from Cascade api call
    *    history: event log

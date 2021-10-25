@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import LogoutButton from "./logout-button";
 import LoginButton from "./login-button";
+import UserAvatar from "./user-avatar";
 
 const MainNav = () => {
   const { isAuthenticated } = useAuth0();
@@ -57,7 +58,10 @@ const AuthNav = (props) => {
   return (
     <Nav className="justify-content-end">
       {isAuthenticated 
-      ? <LogoutButton allValues={props.allValues} setAllValues={props.setAllValues} /> 
+      ? <div>
+          <UserAvatar/>
+          <LogoutButton allValues={props.allValues} setAllValues={props.setAllValues} /> 
+        </div>
       : <LoginButton allValues={props.allValues} setAllValues={props.setAllValues} /> }
     </Nav>
   )
