@@ -11,15 +11,11 @@ const Hero = () => {
     <div className="text-center hero my-5">
       <img className="mb-3 app-logo" src={logo} alt="React logo" width="120" />
       <h1 className="mb-4">{ isAuthenticated ? <span>Hi, {user.nickname}</span>
-            : <span>You are not authenticated yet</span>
+            : <span className="red">You are not authenticated yet</span>
           }
       </h1>
 
       <div className="lead">
-        Use case2: 
-        <li>Instance jnj is created.</li>
-        <li>Cascade users invited. </li>
-        <li>Auth0 user does not exist.</li>
       </div>
     </div>
   )

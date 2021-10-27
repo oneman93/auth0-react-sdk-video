@@ -100,3 +100,11 @@ https://matthewoh93.au.auth0.com/api/v2/users/google-oauth2%7C101798354348959699
 id: google-oauth2|101798354348959699491
 "provider": "google-oauth2",
 "user_id": "111366055683076897306"  // note that only the 2nd number part
+
+/****** api list or Search Users *******/
+GET	/api/v2/users
+q: email:"matthewoh93@gmail.com"
+search_engine: v3
+Retrieve Users with the Get Users Endpoint
+https://auth0.com/docs/users/user-search/retrieve-users-with-get-users-endpoint
+

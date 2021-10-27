@@ -49,13 +49,17 @@ const App = () => {
 
   return (
     <div id="app" className="d-flex flex-column h-100">
-      <div className="myButtonWrapper"><Hello increment={increment} /></div>
-      <div>count: {count}</div>
-      <div className="myButtonWrapper">
-        {favoriteNums.map(n => {
-          return <Square increment={increment} n={n} key={n} />;
-        })}
-      </div>      
+      <div className="invisible">
+        <div className="myButtonWrapper">
+          <Hello increment={increment} />
+        </div>
+        <div>count: {count}</div>
+        <div className="myButtonWrapper">
+          {favoriteNums.map(n => {
+            return <Square increment={increment} n={n} key={n} />;
+          })}
+        </div>      
+      </div>
 
       <NavBar allValues={allValues} setAllValues={setAllValues} />
       <EventLog allValues={allValues} setAllValues={setAllValues} />

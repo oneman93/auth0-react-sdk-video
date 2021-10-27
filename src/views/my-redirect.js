@@ -28,7 +28,7 @@ export const MyRedirect = (props) => {
   const getJWTAndRedirect = async () => {
     const jwt = await getAccessTokenSilently();
     setMessage(props, jwt);
-    window.location.href = `${query.get('url')}?jwt=${jwt}`;
+    //window.location.href = `${query.get('url')}?jwt=${jwt}`;
   }
 
   return (

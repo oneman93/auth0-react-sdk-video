@@ -94,6 +94,7 @@ export const Profile = (props) => {
           <p className="lead text-muted">{user.email}</p>
         </Col>
       </Row>
+      <Row>user object</Row>
       <Row>
         <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
       </Row>     
