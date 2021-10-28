@@ -115,3 +115,16 @@ img.user-avatar.w50 {
 .red {
   color: red;
 }
+
+.auth0-user-id {
+  margin-top: 100px;
+}
+
+.provider {
+  border: solid 1px #000000;
+  text-transform: uppercase;
+}
+
+.item {
+  margin: 0 5px;
+}

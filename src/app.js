@@ -10,6 +10,7 @@ import "./app.css";
 import MyRedirect from "./views/my-redirect";
 import Hello from "./components/hello";
 import Square from "./components/square";
+import BeginWithEmail from "./views/begin-with-email";
 
 const App = () => {
   const { isAuthenticated, user } = useAuth0()
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="/profile" component={() => (<Profile allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/external-api" component={() => (<ExternalApi allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/my-redirect" component={() => (<MyRedirect allValues={allValues} setAllValues={setAllValues} />)} />
+          <Route path="/begin-with-email" component={() => (<BeginWithEmail allValues={allValues} setAllValues={setAllValues} />)} />
         </Switch>
       </Container>
       {/* <Footer /> */}

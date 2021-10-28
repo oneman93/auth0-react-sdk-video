@@ -60,9 +60,6 @@ export const ExternalApi = (props) => {
     try {
       const token = await getAccessTokenSilently();
 
-      // test another valid jwt token
-      //const token = '';
-
       addHistory(['Access Token: ' + token]);
       addHistory(['Calling express server http://localhost:6060/api/users with the access token ...']);
       addHistory(['In the server ...']);

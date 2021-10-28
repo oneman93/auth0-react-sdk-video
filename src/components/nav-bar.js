@@ -49,6 +49,15 @@ const MainNav = () => {
       >
         My Redirect
       </Nav.Link>
+
+      <Nav.Link
+        as={RouterNavLink}
+        to="/begin-with-email"
+        exact
+        activeClassName="router-link-exact-active"
+      >
+        Begin with Email
+      </Nav.Link>
     </Nav>
   );
 };

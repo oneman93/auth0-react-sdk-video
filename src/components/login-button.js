@@ -45,10 +45,21 @@ const LoginButton = (props) => {
         variant="primary"
         className="btn-margin"
       >
-        Login
+        jnj Login
       </Button>
 
-      <button onClick={() => history.push('/')}>Go to home</button>
+      <Button
+        onClick={() => {        
+            
+        }}
+        id="qsUniversialLoginBtn"
+        variant="secondary"
+        className="btn-margin"
+      >
+        Universial Login
+      </Button>
+
+      {/* <button onClick={() => history.push('/')}>Go to home</button> */}
 
     </ButtonGroup>
     
