@@ -49,3 +49,9 @@ export const toggleShowLog = (props) => {
     return {...preValues, ['showLog']: !props.allValues.showLog}
   })
 }
+
+export const setSessionUser = (props, userObj) => {
+  props.setAllValues(preValues => {
+    return {...preValues, ['sessionUser']: userObj}
+  })
+}

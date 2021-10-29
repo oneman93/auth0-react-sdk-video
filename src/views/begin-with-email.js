@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, Container } from "react-bootstrap";
 import Highlight from "../components/highlight";
 import { useAuth0 } from "@auth0/auth0-react";
-import { justAnAlert, addHistory, clearHistory, toggleShowLog, setMessage } from "../utils";
+import { justAnAlert, addHistory, clearHistory, toggleShowLog, setSessionUser } from "../utils";
 import { FaceRounded } from '@material-ui/icons';
 
 /**
@@ -16,7 +16,7 @@ export const BeginWithEmail = (props) => {
   const { isAuthenticated, user, loginWithRedirect } = useAuth0()
   const serverUrl = process.env.REACT_APP_SERVER_URL;
   let userEmail = '';
-
+  
   // the whole object
   const theUser = {
     identities: []
@@ -52,14 +52,19 @@ export const BeginWithEmail = (props) => {
     }
 
     // Update theUser whenever each user is ready.
-    setMessage(props, theUser);
+    setSessionUser(props, theUser);
   }
 
   /**
    * API - get all users of Auth0
    */
    const searchUsers = async() => {
-    
+    // check inputbox empty
+    if (!userEmail) {
+      justAnAlert('enter email');
+      return;
+    }
+
     try {
       var url = new URL(`${serverUrl}/api/users`)
       var params = {email:userEmail}
@@ -127,7 +132,7 @@ export const BeginWithEmail = (props) => {
 
   return (
   <div>
-    <input type="text" placeholder="your email" defaultValue="matthewoh93@gmail.com" onChange={doSomething} />
+    <input type="text" placeholder="matthewoh93@gmail.com" onChange={doSomething} />
     <Button
       onClick={() => {                      
         searchUsers();
@@ -142,25 +147,28 @@ export const BeginWithEmail = (props) => {
     
     <div>
       {
-      props.allValues.message && props.allValues.message.identities.map((u,i) => {
-        return (<div key={i} className="auth0-user-id">
-          <FaceRounded />
-          <span className="item provider">{u.provider == 'auth0' ? 'username-password-authenticaton' : u.provider}</span>
-          <span className="item">{u.id}</span>
-          <span className="item">{u.name}</span>
-          
-          {u.organizations.map((o, j) => (
-            <div key={j}>
-              <span>{o.id}</span>
-              <Button onClick={() => {                      
-                loginOrganization(o.id);
-              }}
-              >{o.displayName}</Button>
-              <hr />
-            </div>
-          ))}
-        </div>);
-      })}
+        props.allValues.sessionUser ?
+        props.allValues.sessionUser.identities.map((u,i) => {
+          return (<div key={i} className="auth0-user-id">
+            <FaceRounded />
+            <span className="item provider">{u.provider == 'auth0' ? 'username-password-authenticaton' : u.provider}</span>
+            <span className="item">{u.id}</span>
+            <span className="item">{u.name}</span>
+            
+            {u.organizations.map((o, j) => (
+              <div key={j}>
+                <span>{o.id}</span>
+                <Button onClick={() => {                      
+                  loginOrganization(o.id);
+                }}
+                >{o.displayName}</Button>
+                <hr />
+              </div>
+            ))}
+          </div>);
+        })
+        : <div>no user found</div>
+    }
       
     </div>
   </div>

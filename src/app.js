@@ -29,7 +29,8 @@ const App = () => {
     messageCascade: '',
     history: ['App started ...'],
     showLog: false,
-    profile: ''
+    profile: '',
+    sessionUser: null
   });
 
 
