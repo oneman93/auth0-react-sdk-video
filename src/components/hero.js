@@ -3,6 +3,7 @@ import React, {useEffect, useState } from "react";
 //import logo from "../assets/logo.svg";
 import logo from "../assets/jnj150.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 
 const Hero = () => {
   const { isAuthenticated, user } = useAuth0()
@@ -10,18 +11,43 @@ const Hero = () => {
 
   const [orgDisplayName, setOrgDisplayName] = useState(0);
 
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  }
+
+  const query = useQuery();
+  const jwt = query.get('jwt');
+
+  const parseJwt = (token) => {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  };
+
   // Constructor  
   useEffect(() => {
     if (isAuthenticated) {
-      getOrganization(user.org_id).then((orgData) => {
-        // display org name
-        setOrgDisplayName(orgData.display_name);
-      });    
+
+      if (jwt) {
+        // get org id from jwt
+        const decodedToken = parseJwt(jwt)
+        console.log('decodedToken: ', decodedToken);
+        
+        getOrganization(decodedToken.org_id).then((orgData) => {
+          // display org name
+          setOrgDisplayName(orgData.display_name);
+        });   
+      }
+       
     }    
   }, [isAuthenticated]);
 
   /**
-   * API - get all users of Auth0
+   * API - get org
    */
    const getOrganization = async(orgId) => {
     

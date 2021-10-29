@@ -101,3 +101,7 @@ https://daveceddia.com/context-api-vs-redux/
 useCallback
 https://www.youtube.com/watch?v=-Ls48dd-vJE
 
+getaccesstokensilently with organization
+https://community.auth0.com/t/user-switch-between-organization/62609
+https://community.auth0.com/t/how-to-automatically-select-organizations-during-login/63599/2
+https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#5-use-with-auth0-organizations

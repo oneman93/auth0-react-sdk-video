@@ -20,7 +20,7 @@ const LoginButton = (props) => {
               {
                 screen_hint: 'signup',
                 appState: {
-                  returnTo: '/my-redirect?url=http://demo.cascade.localhost'
+                  returnTo: '/my-redirect?target=http://demo.cascade.localhost&required=jwt&pause=true'
                 }
               }
             );                
@@ -49,11 +49,20 @@ const LoginButton = (props) => {
       </Button>
 
       <Button
-        onClick={() => {        
-            
+        onClick={() => {   
+          localStorage.removeItem('jwt_with_org_id');
+     
+          loginWithRedirect(
+            {
+              appState: {
+                //returnTo: '/my-redirect?target=http://demo.cascade.localhost&required=jwt,org_id&pause=false'
+                returnTo: '/my-redirect?target=http://localhost:3000&required=jwt,org_id&pause=false'
+              }
+            }
+          );    
         }}
         id="qsUniversialLoginBtn"
-        variant="secondary"
+        variant="primary"
         className="btn-margin"
       >
         Universial Login

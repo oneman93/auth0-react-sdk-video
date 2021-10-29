@@ -13,6 +13,7 @@ const LogoutButton = (props) => {
   return (
     <Button
       onClick={() => {
+        localStorage.removeItem('jwt_with_org_id');
         addHistory(['Auth0 logout called...']);
         logout()
       }}
