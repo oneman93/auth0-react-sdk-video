@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, ButtonGroup, Container } from "react-bootstrap";
 import Highlight from "../components/highlight";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -12,10 +12,18 @@ import { FaceRounded } from '@material-ui/icons';
  */
 
 
-export const BeginWithEmail = (props) => {
-  const { isAuthenticated, user, loginWithRedirect } = useAuth0()
+export const OrgSelector = (props) => {
+  const { isAuthenticated, user, loginWithRedirect, getAccessTokenSilently } = useAuth0()
   const serverUrl = process.env.REACT_APP_SERVER_URL;
   let userEmail = '';
+
+  // Constructor  
+  useEffect(() => {
+    if (isAuthenticated && !props.allValues.sessionUser) {
+      searchUserByID(user.sub);     
+        
+    }    
+  }, [isAuthenticated, props.allValues.sessionUser]);
   
   // the whole object
   const theUser = {
@@ -27,12 +35,35 @@ export const BeginWithEmail = (props) => {
     userEmail = evt.target.value;
   }
 
-  const loginOrganization = (org_id) => {
-    loginWithRedirect(
-      {
-        organization: `${org_id}`
-      }
-    );
+  // Update jwt with org_id then redirect.
+  // Refer to `getDefaultOrganizationAndRedirect` in my-redirect.js
+  const loginOrganizationSilently = async (orgId) => {
+    
+    try {
+
+      const jwtWithOrg = localStorage.getItem('jwt_with_org_id');
+
+      // Update jwt with org_id
+      if (!jwtWithOrg) {
+        const token = await getAccessTokenSilently({
+          organization: `${orgId}`,
+          ignoreCache: true,
+        });
+      
+        localStorage.setItem('jwt_with_org_id', token);
+
+        const target = '/';
+        const urlResult = `${target}?jwt=${token}`;
+        console.log('url: ', urlResult);
+        console.log('jwt with org_id is set.')
+
+        // redirect
+        window.location.href = urlResult;
+      }     
+
+    } catch(error) {
+      console.log('error: ', error.message);
+    }
   }
 
   const getOrganizations = async(userId) => {
@@ -57,38 +88,44 @@ export const BeginWithEmail = (props) => {
 
   /**
    * API - get all users of Auth0
+   * GET	/api/v2/users/{id}
    */
-   const searchUsers = async() => {
+   const searchUserByID = async(userId) => {
     // check inputbox empty
-    if (!userEmail) {
-      justAnAlert('enter email');
+    if (!userId) {
+      justAnAlert('enter userId');
       return;
     }
 
     try {
-      var url = new URL(`${serverUrl}/api/users`)
-      var params = {email:userEmail}
-      url.search = new URLSearchParams(params).toString();
+      // You can get token from query param as well
+      const token = await getAccessTokenSilently();   
 
-      const response = await fetch(url);
-      const usersData = await response.json();
+      const response = await fetch(`${serverUrl}/api/users/${userId}`, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          method: 'GET'
+        }
+      );
 
-      usersData.map((n,i) => {
-        const userId = `${n.identities[0].provider}|${n.identities[0].user_id}`;
+      const userData = await response.json();
 
-        theUser.identities.push({
-          provider: n.identities[0].provider,
-          id: n.identities[0].user_id,
-          name: n.name,
-          userId: userId,
-          organizations:[]
-        });
+      
+      
+      theUser.identities.push({
+        provider: userData.identities[0].provider,
+        id: userData.identities[0].user_id,
+        name: userData.name,
+        userId: userId,
+        organizations:[]
+      });
 
-        // get each user's orgs
-        getOrganizations(userId);
+      // get each user's orgs
+      getOrganizations(userId);
 
-      })
-
+      
       
     } catch (error) {
       addHistory(props, [error.message]);
@@ -97,19 +134,7 @@ export const BeginWithEmail = (props) => {
 
   return (
   <div>
-    <input type="text" placeholder="type your email" onChange={doSomething} />
-    <Button
-      onClick={() => {                      
-        searchUsers();
-      }}
-      id="qsFindOrganizationsBtn"
-      variant="primary"
-      className="btn-margin"
-    >
-      Find my organizations
-    </Button>
-
-    
+    <span>Please select organization</span>
     <div>
       {
         props.allValues.sessionUser ?
@@ -124,7 +149,7 @@ export const BeginWithEmail = (props) => {
               <div key={j}>
                 <span>{o.id}</span>
                 <Button onClick={() => {                      
-                  loginOrganization(o.id);
+                  loginOrganizationSilently(o.id);
                 }}
                 >{o.displayName}</Button>
                 <hr />
@@ -142,4 +167,4 @@ export const BeginWithEmail = (props) => {
 
 };
 
-export default BeginWithEmail;
+export default OrgSelector;

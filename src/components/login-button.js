@@ -50,8 +50,7 @@ const LoginButton = (props) => {
 
       <Button
         onClick={() => {   
-          localStorage.removeItem('jwt_with_org_id');
-     
+          localStorage.removeItem('jwt_with_org_id');     
           loginWithRedirect(
             {
               appState: {
@@ -65,7 +64,27 @@ const LoginButton = (props) => {
         variant="primary"
         className="btn-margin"
       >
-        Universial Login
+        Universial Login (default org)
+      </Button>
+
+      <Button
+        onClick={() => {   
+          localStorage.removeItem('jwt_with_org_id');
+     
+          loginWithRedirect(
+            {
+              appState: {
+                //returnTo: '/my-redirect?target=http://demo.cascade.localhost&required=jwt,org_id&pause=false'
+                returnTo: '/my-redirect?target=http://localhost:3000/org-selector&required=jwt,org_selector&pause=false'
+              }
+            }
+          );    
+        }}
+        id="qsUniversialLogin2Btn"
+        variant="primary"
+        className="btn-margin"
+      >
+        Universial Login (org selector)
       </Button>
 
       {/* <button onClick={() => history.push('/')}>Go to home</button> */}

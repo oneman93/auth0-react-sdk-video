@@ -6,6 +6,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { justAnAlert, addHistory, clearHistory } from "../utils";
 import CreateJWTButton from "../components/create-jwt-button";
 import { useHistory, useParams, useLocation } from "react-router-dom";
+import { Loading } from "./../components";
 
 export const MyRedirect = (props) => {
   const { user, getAccessTokenSilently, getAccessTokenWithPopup, loginWithPopup, isAuthenticated } = useAuth0();
@@ -21,13 +22,6 @@ export const MyRedirect = (props) => {
   const target = query.get('target');
   const required = query.get('required');
   const pause = query.get('pause') == 'true';
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     getJWTAndRedirect();
-  //   }
-  // }, [isAuthenticated]);
-
 
   const getDefaultOrganizationAndRedirect = async () => {
     var url = new URL(`${serverUrl}/api/users/${user.sub}/organizations`)
@@ -48,7 +42,7 @@ export const MyRedirect = (props) => {
 
       const jwtWithOrg = localStorage.getItem('jwt_with_org_id');
 
-      // set jwt with org_id
+      // Update jwt with org_id
       if (!jwtWithOrg) {
         token = await getAccessTokenSilently({
           organization: `${orgId}`,
@@ -57,7 +51,7 @@ export const MyRedirect = (props) => {
       
         localStorage.setItem('jwt_with_org_id', token);
 
-        const urlResult = `${target}?token=${token}`;
+        const urlResult = `${target}?jwt=${token}`;
         console.log('url: ', urlResult);
         console.log('jwt with org_id is set.')
       }      
@@ -77,7 +71,11 @@ export const MyRedirect = (props) => {
     const jwt = await getAccessTokenSilently();
     const requiredList = required.split(',');
 
-    if (requiredList.indexOf('org_id') >= 0) {
+    if (requiredList.indexOf('org_selector') >= 0) {
+      // You could use history.push ...
+      window.location.href = `${target}?jwt=${jwt}`;
+
+    } else if (requiredList.indexOf('org_id') >= 0) {
       getDefaultOrganizationAndRedirect();
     } else {
       if (!pause) {
@@ -94,12 +92,16 @@ export const MyRedirect = (props) => {
   
   // if pause is true, below will show. if pause is false, you are redirect to target page automatcially
   return (
-    <Container className="mb-5">
-      <div>You are paused before redirecting to:</div>
-      <br/>
-      {/* <div>{target}?jwt={props.allValues.message}</div> */}
-      <div>see console for redirect target</div>
-    </Container>
+    <div>
+    {
+      pause ? <div>        
+          <div>You are paused before redirecting to:</div>
+          <br/>          
+          <div>see console for redirect target</div>        
+        </div>
+      : <Loading />
+    }
+    </div>
   );
 };
 

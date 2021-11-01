@@ -11,6 +11,7 @@ import MyRedirect from "./views/my-redirect";
 import Hello from "./components/hello";
 import Square from "./components/square";
 import BeginWithEmail from "./views/begin-with-email";
+import OrgSelector from "./views/org-selector";
 
 const App = () => {
   const { isAuthenticated, user } = useAuth0()
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="/external-api" component={() => (<ExternalApi allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/my-redirect" component={() => (<MyRedirect allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/begin-with-email" component={() => (<BeginWithEmail allValues={allValues} setAllValues={setAllValues} />)} />
+          <Route path="/org-selector" component={() => (<OrgSelector allValues={allValues} setAllValues={setAllValues} />)} />
         </Switch>
       </Container>
       {/* <Footer /> */}
