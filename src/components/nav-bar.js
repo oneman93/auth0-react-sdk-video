@@ -58,6 +58,15 @@ const MainNav = () => {
       >
         Begin with Email
       </Nav.Link>
+
+      <Nav.Link
+        as={RouterNavLink}
+        to="/arengu"
+        exact
+        activeClassName="router-link-exact-active"
+      >
+        Arengu
+      </Nav.Link>
     </Nav>
   );
 };

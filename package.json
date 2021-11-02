@@ -21,6 +21,7 @@
     "jwks-rsa": "^1.8.1",
     "morgan": "^1.10.0",
     "react": "^16.13.1",
+    "react-arengu-forms": "^1.0.2",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.5",

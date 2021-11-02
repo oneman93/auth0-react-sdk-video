@@ -12,6 +12,7 @@ import Hello from "./components/hello";
 import Square from "./components/square";
 import BeginWithEmail from "./views/begin-with-email";
 import OrgSelector from "./views/org-selector";
+import ArenguStartForm from "./views/arengu-start-form";
 
 const App = () => {
   const { isAuthenticated, user } = useAuth0()
@@ -75,6 +76,7 @@ const App = () => {
           <Route path="/my-redirect" component={() => (<MyRedirect allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/begin-with-email" component={() => (<BeginWithEmail allValues={allValues} setAllValues={setAllValues} />)} />
           <Route path="/org-selector" component={() => (<OrgSelector allValues={allValues} setAllValues={setAllValues} />)} />
+          <Route path="/arengu" component={() => (<ArenguStartForm allValues={allValues} setAllValues={setAllValues} />)} />
         </Switch>
       </Container>
       {/* <Footer /> */}
