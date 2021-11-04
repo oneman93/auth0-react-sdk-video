@@ -65,7 +65,16 @@ const MainNav = () => {
         exact
         activeClassName="router-link-exact-active"
       >
-        Arengu
+        Arengu Embedded
+      </Nav.Link>
+
+      <Nav.Link
+        as={RouterNavLink}
+        to="/login"
+        exact
+        activeClassName="router-link-exact-active"
+      >
+        Login Page (default org)
       </Nav.Link>
     </Nav>
   );

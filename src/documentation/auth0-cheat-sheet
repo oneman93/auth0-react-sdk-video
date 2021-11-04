@@ -27,6 +27,7 @@ q: user_id=google-oauth2|111366055683076897306
 
 /****** api update a user *****/
 id: google-oauth2|101798354348959699491
+id: auth0|6167db1d884e6e006a4ad08d
 body: 
 
 {
@@ -35,6 +36,11 @@ body:
     "addresses": { "work_address": "city somewhere" }
   }
 }
+
+or 
+{} to wipe out
+
+
 
 /****** api Link a User Account *****/
 id: google-oauth2|101798354348959699491
